@@ -51,6 +51,12 @@ curl -X POST http://localhost:8080/api/v1/books -d '{"title": "Sample Book", "au
 curl -X PUT http://localhost:8080/api/v1/books/{bookID} -d '{"title": "Updated Book Title"}'
 ```
 
+1. Delete a book
+
+```sh
+curl -X DELETE http://localhost:8080/api/v1/books/{bookID}
+```
+
 ## Contributing
 
 Contributions are welcome! If you find a bug or have an enhancement in mind, feel free to open an issue or submit a pull request.

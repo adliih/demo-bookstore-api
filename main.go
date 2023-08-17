@@ -23,6 +23,7 @@ func main() {
 	v1.GET("/books", bookController.GetAllBooks)
 	v1.POST("/books", bookController.CreateBook)
 	v1.PUT("/books/:bookID", bookController.UpdateBook)
+	v1.DELETE("/books/:bookID", bookController.DeleteBook)
 
 	router.Run(":8080")
 }

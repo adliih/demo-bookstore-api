@@ -9,6 +9,7 @@ type BookService interface {
 	FindAllBooks() ([]models.Book, error)
 	CreateBook(input models.CreateBookInput) error
 	UpdateBook(bookID uint, input models.UpdateBookInput) error
+	DeleteBook(bookID uint) error
 }
 
 type bookService struct {
@@ -38,4 +39,8 @@ func (s *bookService) UpdateBook(bookID uint, input models.UpdateBookInput) erro
 		Author: input.Author,
 		Genre:  input.Genre,
 	})
+}
+
+func (s *bookService) DeleteBook(bookID uint) error {
+	return s.bookRepo.DeleteBook(bookID)
 }

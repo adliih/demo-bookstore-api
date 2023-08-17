@@ -9,6 +9,7 @@ type BookRepository interface {
 	FindAllBooks() ([]models.Book, error)
 	CreateBook(book models.Book) error
 	UpdateBook(bookID uint, updatedBook models.Book) error
+	DeleteBook(bookID uint) error
 }
 
 type bookRepository struct{}
@@ -34,4 +35,8 @@ func (r *bookRepository) UpdateBook(bookID uint, updatedBook models.Book) error 
 	return db.GetDB().Model(&models.Book{}).
 		Where(&models.Book{ID: bookID}).
 		Updates(updatedBook).Error
+}
+
+func (r *bookRepository) DeleteBook(bookID uint) error {
+	return db.GetDB().Delete(&models.Book{}, bookID).Error
 }

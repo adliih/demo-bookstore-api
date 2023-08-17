@@ -62,3 +62,20 @@ func (ctrl *BookController) UpdateBook(c *gin.Context) {
 
 	c.JSON(200, gin.H{"message": "Book updated successfully"})
 }
+
+func (ctrl *BookController) DeleteBook(c *gin.Context) {
+	bookIDStr := c.Param("bookID")
+	bookID, err := strconv.Atoi(bookIDStr)
+	if err != nil {
+		c.JSON(400, gin.H{"error": "Invalid book ID"})
+		return
+	}
+
+	err = ctrl.bookService.DeleteBook(uint(bookID))
+	if err != nil {
+		c.JSON(500, gin.H{"error": "Internal server error"})
+		return
+	}
+
+	c.JSON(200, gin.H{"message": "Book deleted successfully"})
+}
