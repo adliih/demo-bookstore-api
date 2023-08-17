@@ -7,6 +7,7 @@ import (
 
 type BookRepository interface {
 	FindAllBooks() ([]models.Book, error)
+	CreateBook(book models.Book) error
 }
 
 type bookRepository struct{}
@@ -22,4 +23,8 @@ func (r *bookRepository) FindAllBooks() ([]models.Book, error) {
 		return nil, err
 	}
 	return books, nil
+}
+
+func (r *bookRepository) CreateBook(book models.Book) error {
+	return db.GetDB().Create(&book).Error
 }

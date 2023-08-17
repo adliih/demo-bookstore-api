@@ -39,6 +39,12 @@ Welcome to the Bookstore API project! This repository contains a RESTful API bui
 curl http://localhost:8080/api/v1/books
 ```
 
+1. Create a new book:
+
+```sh
+curl -X POST http://localhost:8080/api/v1/books -d '{"title": "Sample Book", "author": "John Doe", "genre": "Fiction"}'
+```
+
 ## Contributing
 
 Contributions are welcome! If you find a bug or have an enhancement in mind, feel free to open an issue or submit a pull request.
