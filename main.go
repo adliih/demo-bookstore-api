@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/adliih/demo-bookstore-api/controller"
 	"github.com/adliih/demo-bookstore-api/db"
 	_ "github.com/adliih/demo-bookstore-api/docs"
@@ -14,6 +16,11 @@ import (
 )
 
 func main() {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
 	db.InitDB(sqlite.Open("sqlite.db"), &gorm.Config{})
 
 	router := gin.Default()
@@ -30,5 +37,5 @@ func main() {
 
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
-	router.Run(":8080")
+	router.Run(":" + port)
 }
