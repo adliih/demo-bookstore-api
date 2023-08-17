@@ -22,6 +22,7 @@ func main() {
 	v1 := router.Group("/api/v1")
 	v1.GET("/books", bookController.GetAllBooks)
 	v1.POST("/books", bookController.CreateBook)
+	v1.PUT("/books/:bookID", bookController.UpdateBook)
 
 	router.Run(":8080")
 }

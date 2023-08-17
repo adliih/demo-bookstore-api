@@ -8,6 +8,7 @@ import (
 type BookService interface {
 	FindAllBooks() ([]models.Book, error)
 	CreateBook(input models.CreateBookInput) error
+	UpdateBook(bookID uint, input models.UpdateBookInput) error
 }
 
 type bookService struct {
@@ -29,4 +30,12 @@ func (s *bookService) CreateBook(input models.CreateBookInput) error {
 		Genre:  input.Genre,
 	}
 	return s.bookRepo.CreateBook(book)
+}
+
+func (s *bookService) UpdateBook(bookID uint, input models.UpdateBookInput) error {
+	return s.bookRepo.UpdateBook(bookID, models.Book{
+		Title:  input.Title,
+		Author: input.Author,
+		Genre:  input.Genre,
+	})
 }

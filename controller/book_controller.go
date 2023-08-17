@@ -1,6 +1,8 @@
 package controller
 
 import (
+	"strconv"
+
 	"github.com/adliih/demo-bookstore-api/models"
 	"github.com/adliih/demo-bookstore-api/service"
 	"github.com/gin-gonic/gin"
@@ -36,4 +38,27 @@ func (ctrl *BookController) CreateBook(c *gin.Context) {
 	}
 
 	c.JSON(201, gin.H{"message": "Book created successfully"})
+}
+
+func (ctrl *BookController) UpdateBook(c *gin.Context) {
+	bookIDStr := c.Param("bookID")
+	bookID, err := strconv.Atoi(bookIDStr)
+	if err != nil {
+		c.JSON(400, gin.H{"error": "Invalid book ID"})
+		return
+	}
+
+	var input models.UpdateBookInput
+	if err := c.ShouldBindJSON(&input); err != nil {
+		c.JSON(400, gin.H{"error": "Bad request"})
+		return
+	}
+
+	err = ctrl.bookService.UpdateBook(uint(bookID), input)
+	if err != nil {
+		c.JSON(500, gin.H{"error": "Internal server error"})
+		return
+	}
+
+	c.JSON(200, gin.H{"message": "Book updated successfully"})
 }

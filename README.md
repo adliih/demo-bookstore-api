@@ -45,6 +45,12 @@ curl http://localhost:8080/api/v1/books
 curl -X POST http://localhost:8080/api/v1/books -d '{"title": "Sample Book", "author": "John Doe", "genre": "Fiction"}'
 ```
 
+1. Update a book
+
+```sh
+curl -X PUT http://localhost:8080/api/v1/books/{bookID} -d '{"title": "Updated Book Title"}'
+```
+
 ## Contributing
 
 Contributions are welcome! If you find a bug or have an enhancement in mind, feel free to open an issue or submit a pull request.
