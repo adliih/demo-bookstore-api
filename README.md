@@ -9,6 +9,7 @@ Welcome to the Bookstore API project! This repository contains a RESTful API bui
   - [Features](#features)
   - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
+  - [Usage Examples](#usage-examples)
   - [Contributing](#contributing)
   - [License](#license)
 
@@ -30,7 +31,13 @@ Welcome to the Bookstore API project! This repository contains a RESTful API bui
 
 <!-- ## API Documentation -->
 
-<!-- ## Usage Examples -->
+## Usage Examples
+
+1. Retrieve all books:
+
+```sh
+curl http://localhost:8080/api/v1/books
+```
 
 ## Contributing
 
