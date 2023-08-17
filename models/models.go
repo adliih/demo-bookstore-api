@@ -26,3 +26,10 @@ type UpdateBookInput struct {
 	Author string `json:"author"`
 	Genre  string `json:"genre"`
 }
+
+type ErrorResponse struct {
+	Error string `json:"error"`
+}
+type SuccessResponse struct {
+	Message string `json:"message"`
+}
